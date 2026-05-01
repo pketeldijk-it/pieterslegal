@@ -21,7 +21,7 @@
       --line-soft:  rgba(0,0,0,0.07);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Nunito Sans', sans-serif; background: #fff; color: var(--text); overflow-x: hidden; }
+    body { font-family: 'Nunito Sans', sans-serif; background: #fff; color: var(--text); overflow-x: hidden; touch-action: pan-y; -webkit-overflow-scrolling: touch; }
 
     /* ─── TOP BAR ─── */
     .topbar {
@@ -78,9 +78,12 @@
     /* ─── SLIDE PANEL ─── */
     .mob-overlay {
       position: fixed; inset: 0; background: rgba(13,31,31,0.55);
-      z-index: 299; opacity: 0; pointer-events: none; transition: opacity .4s;
+      z-index: 299; opacity: 0; pointer-events: none;
+      visibility: hidden;
+      transition: opacity .4s, visibility .4s;
+      -webkit-tap-highlight-color: transparent;
     }
-    .mob-overlay.open { opacity: 1; pointer-events: all; }
+    .mob-overlay.open { opacity: 1; pointer-events: all; visibility: visible; }
 
     .mob-menu {
       position: fixed; top: 0; right: 0; bottom: 0;
@@ -310,11 +313,12 @@
       background: rgba(10,30,30,0.65);
       backdrop-filter: blur(4px);
       opacity: 0; pointer-events: none;
-      transition: opacity .35s ease;
+      visibility: hidden;
+      transition: opacity .35s ease, visibility .35s ease;
       display: flex; align-items: center; justify-content: center;
       padding: 1.5rem;
     }
-    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-overlay.open { opacity: 1; pointer-events: all; visibility: visible; }
 
     .modal {
       background: #fff;
